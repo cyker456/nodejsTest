@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>list</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css"/>
+    <!-- Node.js는 public 폴더를 이미 지정했기 때문에(__dirname + "public") 
+    public 폴더 안에 있다고 간주하고 경로를 지정해야한다. -->
+  </head>
+  <body>
+    <form action="/getList">
+      <h1>데이터 조회</h1>
+      <td><a href="/">입력창으로</a></td>
+      <!--index.ejs 에서 설정해준 입력폼으로 가는링크-->
+      <table>
+          <tr> <!-- first row definition -->
+              <th>test_id</th>
+              <th>test_name</th>
+              <th>삭제</th>
+              <th>수정</th>
+          </tr>
+        <% data.forEach(function (value) { %>
+        <!-- 반복문선언 -->
+        <tr>
+          <td>id : <%= value.test_id %></td>
+          <!-- value 의 id 값 -->
+          <td>des : <%= value.test_name %></td>
+          <!-- // value 의 des 값 -->
+          <td><a href="/delete/<%= value.id %>">삭제</a></td>
+          <!-- 삭제기능구현을 위해 각 데이터 id값을 이용한 삭제링크를 달아준다 -->
+          <td><a href="/update/<%= value.id %>">수정</a></td>
+          <!-- 수정기능구현을 위해 각 데이터 id값을 이용한 삭제링크를 달아준다 -->
+        </tr>
+        <% }); %>
+      </table>
+    </form>
+  </body>
+</html>
